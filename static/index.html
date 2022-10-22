@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mall</title>
+  </head>
+  <body>
+    <h1>商品管理</h1>
+    <div>商品类型: <span id="type"></span></div>
+    <div>商品名: <span id="name"></span></div>
+  <script>
+    searchId=getUrlParam("id");
+    var url="/api/product?id="
+    url = url+searchId
+    var ajax=new XMLHttpRequest();
+    ajax.open("get",url);
+    ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    ajax.send();
+    ajax.onreadystatechange=function() {
+      if (ajax.readyState == 4 && ajax.status == 200) {
+	var data = JSON.parse(ajax.responseText);
+	console.log(data)
+	var ptype = document.getElementById("type")
+	var pname = document.getElementById("name")
+	ptype.innerHTML = data.Type
+	pname.innerHTML = data.Name
+	}
+    }
+    function getUrlParam(key) {
+      var href = window.location.href;
+      var url = href.split("?");
+      if(url.length <= 1){
+        return "";
+      }
+        var params = url[1].split("&");
+        for(var i=0; i<params.length; i++){
+        var param = params[i].split("=");
+        if(key == param[0]){
+          return param[1];
+        }
+      }
+        return "";
+    }
+  </script>
+  </body>
+</html>

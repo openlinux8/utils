@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background-color: #ffffffff;
+}
+
+.tip {
+  color: #fff;
+  padding: 10px;
+  margin: 10px 50px 5px;
+  font-size: 2em;
+  opacity: 0.7;
+}
+
+.wrapper {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  background-color: #333;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -150px;
+}
+
+.username {
+  width: 225px;
+  margin: 10px 10px 20px 75px;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.password {
+  width: 225px;
+  margin: 10px 30px 20px 75px;
+  padding: 10px 10px;
+  border-radius: 5px;
+
+}
+
+.btn {
+  color: white;
+  width: 225px;
+  height: 35px;
+  margin: 10px 75px 10px;
+  background-color: #48c9b0;
+  border-color: #48c9b0;
+  border-radius: 3px;
+}

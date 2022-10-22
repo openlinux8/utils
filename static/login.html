@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/web.css">
+    <title>Mall登录</title>
+  </head>
+  <body background="/static/img/background.jpg">
+    <div class="wrapper">
+      <div class="tip">用户登录</div>
+        <input type="text" name="username" placeholder="请输入用户名" id="username" class="username">
+        <br>
+        <input type="password" name="password" placeholder="请输入密码" id="password" class="password">
+        <br>
+        <input type="submit" value="登录" id="login" class="btn">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="tip">
+      <p id="info"></p>
+      <p id="user"></p>
+      <p id="pass"></p>
+      <br>
+      <p id="quser"></p>
+      <p id="qpass"></p>
+    </div>
+  <script>
+    document.getElementById('login').onclick=function() {
+    var username=document.getElementById("username").value;
+    var password=document.getElementById("password").value;
+    var strData={"username": username,"password": password};
+    loginData=JSON.stringify(strData);
+    var ajax=new XMLHttpRequest();
+    ajax.open("post","/api/login");
+    ajax.setRequestHeader("content-type","application/json;charset=utf-8");
+    ajax.send(loginData);
+    ajax.onreadystatechange=function() {
+      if (ajax.readyState == 4 && ajax.status == 200) {
+        var data = JSON.parse(ajax.responseText);
+        console.log(data)
+        var info = document.getElementById("info")
+        var user = document.getElementById("user")
+        var pass = document.getElementById("pass")
+        var quser = document.getElementById("quser")
+        var qpass = document.getElementById("qpass")
+        info.innerHTML = data.message
+        user.innerHTML = "Input user: "+data.user
+        pass.innerHTML = "Input password: "+data.password
+        quser.innerHTML = "Result user: "+data.quser
+        qpass.innerHTML = "Result password: "+data.qpassword
+        }
+    }
+    }
+  </script>
+  </body>
+</html>
